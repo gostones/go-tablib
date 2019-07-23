@@ -97,7 +97,9 @@ func (d *Dataset) sql(table, dbType string) *Exportable {
 		b.WriteString("INSERT INTO " + table + " VALUES(" + strconv.Itoa(i+1) + ", ")
 		for j, col := range d.headers {
 			asStr := d.asString(columnValues[col][i])
-			if isStringColumn(columnTypes[col]) {
+			if asStr == "null" {
+				b.WriteString("null")
+			} else if isStringColumn(columnTypes[col]) {
 				b.WriteString("'" + reg.ReplaceAllString(asStr, "''") + "'")
 			} else if strings.HasPrefix(columnTypes[col], "TIMESTAMP") {
 				if dbType == typeMySQL {
