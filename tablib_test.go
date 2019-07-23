@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"testing"
 
-	tablib "github.com/agrison/go-tablib"
+	tablib "github.com/gostones/go-tablib"
 	. "gopkg.in/check.v1"
 )
 
